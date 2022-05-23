@@ -24,6 +24,7 @@ export const FileStep: React.FC<{
   customConfig: CustomizablePapaParseConfig;
   assumeNoHeaders?: boolean;
   prevState: FileStepState | null;
+  preLoadFile?: File;
   onChange: (state: FileStepState | null) => void;
   onAccept: () => void;
 }> = ({ customConfig, assumeNoHeaders, prevState, onChange, onAccept }) => {
@@ -69,6 +70,11 @@ export const FileStep: React.FC<{
   const asyncLockRef = useRef<number>(0);
   useEffect(() => {
     // clear other state when file selector is reset
+    if(!selectedFile && preLoadFile){
+      setSelectedFile(preLoadFile);
+       return;
+    }
+
     if (!selectedFile) {
       setPreview(null);
       return;
@@ -78,6 +84,8 @@ export const FileStep: React.FC<{
     if (preview && preview.file === selectedFile) {
       return;
     }
+
+
 
     const oplock = asyncLockRef.current;
 

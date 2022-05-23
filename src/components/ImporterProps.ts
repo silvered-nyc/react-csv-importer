@@ -40,6 +40,7 @@ export interface ImporterProps<Row extends BaseRow>
   assumeNoHeaders?: boolean;
   restartable?: boolean;
   processChunk: ParseCallback<Row>;
+  preLoadFile?: File;
   onStart?: (info: ImportInfo) => void;
   onComplete?: (info: ImportInfo) => void;
   onClose?: (info: ImportInfo) => void;

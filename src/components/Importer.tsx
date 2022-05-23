@@ -85,6 +85,7 @@ export function Importer<Row extends BaseRow>({
   onComplete,
   onClose,
   children: content,
+  preLoadFile,
   locale,
   ...customPapaParseConfig
 }: ImporterProps<Row>): React.ReactElement {
@@ -144,6 +145,7 @@ export function Importer<Row extends BaseRow>({
       <LocaleContext.Provider value={locale}>
         <div className="CSVImporter_Importer">
           <FileStep
+            preLoadFile={preLoadFile}
             customConfig={customPapaParseConfig}
             assumeNoHeaders={assumeNoHeaders}
             prevState={fileState}
